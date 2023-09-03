@@ -1,0 +1,11 @@
+.square {
+    display: inline-block;
+    width: 20px;
+    /* Adjust the width as needed */
+    height: 20px;
+    /* Adjust the height as needed */
+    background-color: gray;
+    /* Set the desired color, e.g., gray */
+    margin-right: 10px;
+    /* Add some spacing between the square and the text */
+}
