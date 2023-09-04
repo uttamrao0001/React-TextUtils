@@ -9,3 +9,7 @@
     margin-right: 10px;
     /* Add some spacing between the square and the text */
 }
+
+.accordian-button::after {
+    filter: invert(1);
+}

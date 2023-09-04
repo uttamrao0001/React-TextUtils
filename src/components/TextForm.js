@@ -55,6 +55,7 @@ React: A JavaScript Library for Building User Interfaces
         var text = document.getElementById("myText");
         text.select();
         navigator.clipboard.writeText(text.value);
+        document.getSelection().removeAllRanges();
         props.showAlert("Tex copied successfully", "success");
     }
 
@@ -92,18 +93,16 @@ React: A JavaScript Library for Building User Interfaces
 
                     <textarea className="form-control" value={text} style={{ backgroundColor: props.mode === "dark" ? "#03192f" : "white", color: props.mode === "dark" ? "white" : "black" }} onChange={HandleOnChange} id="myText" rows="8" />
                 </div>
-                <button className="btn btn-primary" onClick={HandleUpClick}>Convert to Uppercase </button>
-                <button className="btn btn-primary ms-2" onClick={HandleLoClick}>Convert to Lowercase</button>
-                <button className="btn btn-danger ms-2" onClick={HandleToDelete}>Clear text</button>
-                <button className="btn btn-primary ms-2" onClick={HandleToCopy}>Copy text</button>
-                <button className="btn btn-primary ms-2" onClick={HandleExtraSpace}>Remove extra space</button>
+                <button disabled={text.length === 0} className="btn btn-primary" onClick={HandleUpClick}>Convert to Uppercase </button>
+                <button disabled={text.length === 0} className="btn btn-primary ms-2" onClick={HandleLoClick}>Convert to Lowercase</button>
+                <button disabled={text.length === 0} className="btn btn-danger ms-2" onClick={HandleToDelete}>Clear text</button>
+                <button disabled={text.length === 0} className="btn btn-primary ms-2" onClick={HandleToCopy}>Copy text</button>
+                <button disabled={text.length === 0} className="btn btn-primary ms-2" onClick={HandleExtraSpace}>Remove extra space</button>
             </div>
             <div className={`container my-3 ${props.mode === "dark" ? "text-white" : "text-black"}`}>
                 <h2>Your text summary</h2>
                 <p>
-                    {text.length === 0
-                        ? "0 words and 0 characters"
-                        : `${text.split(" ").length} words and ${text.length} characters`}
+                    {`${text.split(/\s+/).filter((element) => { return element.length != 0 }).length} words and ${text.length} characters`}
                 </p>
 
                 <h3>Preview</h3>
