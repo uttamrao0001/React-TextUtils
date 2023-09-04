@@ -1,10 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 export default function About(props) {
     const [myStyle, setMyStyle] = useState({
-        color: props.mode == "light" ? "black" : "white",
-        backgroundColor: props.mode == "light" ? "white" : "#0e042f"
+        color: props.mode === "light" ? "black" : "white",
+        backgroundColor: props.mode === "light" ? "white" : "#0e042f"
     })
+
+    useEffect(() => {
+        setMyStyle({
+            color: props.mode === "light" ? "black" : "white",
+            backgroundColor: props.mode === "light" ? "white" : "#0e042f"
+        });
+    }, [props.mode]);
 
     const [btntext, setBtnText] = useState("Enable Dark Mode");
     const toggleStyle = () => {
